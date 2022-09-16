@@ -53,9 +53,11 @@ class Dev(Configuration):
       'blog',
       'crispy_forms',
       'crispy_bootstrap5',
+      'debug_toolbar',
   ]
 
   MIDDLEWARE = [
+      'debug_toolbar.middleware.DebugToolbarMiddleware',
       'django.middleware.security.SecurityMiddleware',
       'django.contrib.sessions.middleware.SessionMiddleware',
       'django.middleware.common.CommonMiddleware',
@@ -142,6 +144,7 @@ class Dev(Configuration):
 
   CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
   CRISPY_TEMPLATE_PACK = "bootstrap5"
+  INTERNAL_IPS = ["192.168.11.179"]
 
   LOGGING = {
     "version": 1,
@@ -162,8 +165,8 @@ class Dev(Configuration):
     "root": {
         "handlers": ["console"],
         "level": "DEBUG",
-    },
-}
+        },
+    }
 
 class Prod(Dev):
   DEBUG = values.BooleanValue(True)
